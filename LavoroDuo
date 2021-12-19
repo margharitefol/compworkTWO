@@ -1,0 +1,145 @@
+void ex_1(char* Str)
+{
+	int ParolaPrima = 0;
+	int ParolaD, Ultimo = -1;
+	int Ult = 1;
+	int i = 0;
+	int Par=0;
+	int Ul=0;
+	int c=0;
+	int d=0;
+	char NStr;
+
+	while (Str[i] == ' ')
+	{
+		i++;
+		ParolaPrima++;
+	}
+
+	while (Str[i] != ' ')
+	{
+		i++;
+		Ultimo++;
+	}
+
+	while (Str[i] != '\0')
+	{
+		i++;
+		Ult++;
+	}
+
+	while (Str[i] != ' ')
+		i--;
+
+	ParolaD = i + 1;
+
+	d = strlen(Str) - 1;
+
+	Par = Ultimo - ParolaPrima + 1;
+	Ul = Ult - ParolaD + 2;
+
+	for (i = 0; i < Par / 2; i++)
+	{
+		NStr = Str[i + ParolaPrima];
+		Str[i + ParolaPrima] = Str[Ultimo - i];
+		Str[Ultimo - i] = NStr;
+	}
+	for (i = 0; i < Ul / 2; i++)
+	{
+		NStr = Str[i + ParolaD];
+		Str[i + ParolaD] = Str[Ult - i];
+		Str[Ult - i] = NStr;
+	}
+	for (i = 0; i < d / 2 + 1; i++)
+	{
+		NStr = Str[i];
+		Str[i] = Str[d - i];
+		Str[d - i] = NStr;
+	}
+
+	Ultimo = d - Ultimo - 1;
+	ParolaD = d - ParolaD + 1;
+	c = Ultimo - ParolaD + 1;
+
+	for (i = 0; i < c / 2; i++)
+	{
+		NStr = Str[i + ParolaD];
+		Str[i + ParolaD] = Str[Ultimo - i];
+		Str[Ultimo - i] = NStr;
+	}
+}
+
+struct engineers
+{
+	char name[20];
+	char surname[20];
+	char sex[1];
+	int year_of_birth;
+};
+ void ExDuo(struct engineers)
+{
+	engineers EngineersPrimo;
+	scanf_s("%s", &(EngineersPrimo.name));
+	printf("%s", EngineersPrimo.name);
+    scanf_s("%s", &(EngineersPrimo.surname));
+	printf("%s", EngineersPrimo.surname);
+	scanf_s("%s", &(EngineersPrimo.sex));
+	printf("%s", EngineersPrimo.sex);
+	scanf_s("%s", &(EngineersPrimo.year_of_birth));
+	printf("%s", EngineersPrimo.year_of_birth);//вносим данные(имя, фамилия, пол, год рождения) про каждого инженера
+	int age = 0;
+
+	age = 2021 - (EngineersPrimo.year_of_birth);
+	if (EngineersPrimo.sex == "M")
+	{
+		if (EngineersPrimo.year_of_birth >= 65)
+		{
+			printf("%s", EngineersPrimo);
+		}
+	}
+	else 
+	{
+		if (EngineersPrimo.year_of_birth >= 60)
+		{
+			printf("%s", EngineersPrimo);
+		}
+	}
+	
+}
+
+ void Ex3 ()
+ {
+	 FILE* f;
+	 fopen_s(&f,"TextUno.txt","w+");
+	 if (f == NULL) { printf("This file is not open"); }
+	 FILE* g;
+	 fopen_s(&g, "TextDuo.txt", "w+");
+	 if (g == NULL) { printf("This file is not open"); }
+	 char s[100];
+	 while (fgets(s,999, f) != NULL)
+	 {
+		 fputs(s,  g);
+		 
+
+	 }
+	 
+		 for (int i = 0; fgets(s, 999, g) != NULL; i++)
+		 {
+			 while (s[i] != ' ')
+			 {
+				 delete s, s[i];
+			 }
+			 if (s[i] == 'п')
+			 {
+				 while (s[i] != ' ')
+				 {
+					 delete s, s[i];
+
+				 }
+			 }
+		 }
+		 fclose(f);
+		 fclose(g);
+	 
+	 
+ }
